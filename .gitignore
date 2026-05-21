@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# Generated retrieval artifacts
+paper_skills/
+runtime_paper_skills/
+technical_docs/
+outputs/
+runs/
+
+# Local credentials and scratch files
+*.env
+.env
+openrouterkey.txt
+*.key
+*.pem
+
