@@ -12,9 +12,14 @@ dependencies = [
   "requests>=2.31",
   "pdfplumber>=0.10",
   "PyPDF2>=3.0",
+  "PyYAML>=6.0",
 ]
 
 [project.optional-dependencies]
+# The ReAct execution layer expects the LDP/Aviary runtime used in the
+# experiments. Those packages are environment-specific, so this public package
+# documents the boundary instead of pinning unavailable/internal packages here.
+agent = []
 dev = [
   "pytest>=8",
 ]
@@ -25,4 +30,3 @@ papertoskill-v2 = "paperskills.v2.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["paperskills*"]
-
