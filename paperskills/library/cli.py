@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 from pathlib import Path
 
 from paperskills.library.iterative_paper_retrieval import iterative_retrieve_papers
@@ -21,6 +22,9 @@ def main() -> int:
     parser.add_argument("--json-out", type=Path, help="Optional path for the JSON retrieval report.")
     args = parser.parse_args()
 
+    args.skill_output_dir.mkdir(parents=True, exist_ok=True)
+    os.environ["PAPER_ITERATIVE_SKILL_OUTPUT_DIR"] = str(args.skill_output_dir.resolve())
+
     raw = asyncio.run(
         iterative_retrieve_papers(
             task_family=args.task_family,
@@ -28,7 +32,6 @@ def main() -> int:
             tool_hint=args.tool_hint,
             max_rounds=args.max_rounds,
             top_k=args.top_k,
-            skill_output_dir=args.skill_output_dir,
         )
     )
     parsed = json.loads(raw)
@@ -42,4 +45,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
